@@ -374,9 +374,8 @@ const projects = (await getCollection('work')).sort(
 	.project-head,
 	.exp-head {
 		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
-		gap: 1rem;
+		flex-direction: column;
+		gap: 0.25rem;
 	}
 
 	.project-head h4,
@@ -436,6 +435,13 @@ const projects = (await getCollection('work')).sort(
 		margin-top: 2rem;
 	}
 
+	/* Allow the long button label to wrap instead of overflowing on narrow screens. */
+	.pubs-cta :global(a) {
+		max-width: 100%;
+		white-space: normal;
+		text-align: center;
+	}
+
 	/* Experience — company is the headline, role a label above it */
 
 	.exp-head {
@@ -472,6 +478,18 @@ const projects = (await getCollection('work')).sort(
 		.project-card,
 		.exp-item {
 			padding: 2rem;
+		}
+
+		/* Title on the left, date on the right on wider screens. */
+		.project-head,
+		.exp-head {
+			flex-direction: row;
+			justify-content: space-between;
+			gap: 1rem;
+		}
+
+		.project-head {
+			align-items: baseline;
 		}
 	}
 </style>
