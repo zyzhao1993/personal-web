@@ -1,8 +1,12 @@
 ---
-import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Not Found" description="404 Error — this page was not found">
-	<Hero title="Page Not Found" tagline="Not found" />
+<BaseLayout title="Not Found — Zhiyu Zhao" description="404 — page not found">
+	<h1 style="font-family: var(--font-brand); font-size: 2rem; margin-bottom: 0.5rem;">
+		Page not found
+	</h1>
+	<p style="color: #5a606b;">
+		Sorry, that page doesn't exist. <a href="/">Return home →</a>
+	</p>
 </BaseLayout>

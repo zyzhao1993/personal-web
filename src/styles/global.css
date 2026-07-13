@@ -23,7 +23,7 @@
 	--accent-subtle-overlay: var(--accent-overlay);
 	--accent-text-over: var(--gray-999);
 
-	--link-color: var(--accent-regular);
+	--link-color: #1a51a8;
 
 	/* Gradients */
 	--gradient-stop-1: var(--accent-light);
@@ -71,7 +71,8 @@
 		system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
 		"Open Sans", "Helvetica Neue", sans-serif;
 	--font-body: "Public Sans", var(--font-system);
-	--font-brand: Rubik, var(--font-system);
+	--font-brand:
+		Newsreader, Georgia, "Times New Roman", var(--font-system);
 
 	/* Transitions */
 	--theme-transition: 0.2s ease-in-out;

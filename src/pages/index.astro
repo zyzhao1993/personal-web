@@ -1,495 +1,251 @@
 ---
-import { getCollection } from 'astro:content';
-// Component Imports
-import CallToAction from '../components/CallToAction.astro';
-// Page section components
-import ContactCTA from '../components/ContactCTA.astro';
-import Grid from '../components/Grid.astro';
-import Hero from '../components/Hero.astro';
-import Icon from '../components/Icon.astro';
-import Pill from '../components/Pill.astro';
-import PortfolioPreview from '../components/PortfolioPreview.astro';
-import Skills from '../components/Skills.astro';
-// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Content Fetching: List all publications, most recent first
-const projects = (await getCollection('work')).sort(
-	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
-);
+const publications = [
+	{
+		authors: 'Z. Zhao, E. Tajkhorshid.',
+		title: 'Cytosolic K⁺ binding to the human serotonin transporter.',
+		venue: 'Journal of Chemical Theory and Computation',
+		year: '2026',
+		doi: 'https://doi.org/10.1021/acs.jctc.6c00511',
+	},
+	{
+		authors: 'Z. Zhao, P.-C. Wen, E. Tajkhorshid.',
+		title:
+			'An orchestrated interaction network at the binding site of human SERT enables serotonin occlusion and import.',
+		venue: 'Biochemistry',
+		year: '2025',
+		doi: 'https://doi.org/10.1021/acs.biochem.5c00240',
+	},
+	{
+		authors: 'Z. Zhao, E. Tajkhorshid.',
+		title:
+			'GOLEM: automated and robust cryo-EM–guided ligand docking with explicit water molecules.',
+		venue: 'Journal of Chemical Information and Modeling',
+		year: '2024',
+		doi: 'https://doi.org/10.1021/acs.jcim.4c00917',
+	},
+	{
+		authors: 'D. Yang, Z. Zhao, E. Tajkhorshid, E. Gouaux.',
+		title:
+			'Structures and membrane interactions of native serotonin transporter in complexes with psychostimulants.',
+		venue: 'PNAS',
+		year: '2023',
+		doi: 'https://doi.org/10.1073/pnas.2304602120',
+	},
+	{
+		authors: 'J. Ge, J. Elferich, S. Dehghani-Ghahnaviyeh, Z. Zhao, et al.',
+		title: 'Molecular mechanism of prestin electromotive signal amplification.',
+		venue: 'Cell',
+		year: '2021',
+		doi: 'https://doi.org/10.1016/j.cell.2021.07.034',
+	},
+	{
+		authors: 'P. Kumar, Y. Wang, Z. Zhang, Z. Zhao, et al.',
+		title:
+			'Cryo-EM structures of a lipid-sensitive pentameric ligand-gated ion channel embedded in a phosphatidylcholine-only bilayer.',
+		venue: 'PNAS',
+		year: '2020',
+		doi: 'https://doi.org/10.1073/pnas.1906823117',
+	},
+	{
+		authors: 'J. A. Coleman, D. Yang, Z. Zhao, P.-C. Wen, et al.',
+		title:
+			'Serotonin transporter–ibogaine complexes illuminate mechanisms of inhibition and transport.',
+		venue: 'Nature',
+		year: '2019',
+		doi: 'https://doi.org/10.1038/s41586-019-1135-1',
+	},
+];
 
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+const interests = [
+	'Machine learning for structure-based drug discovery',
+	'Diffusion models & geometric deep learning for molecular docking',
+	'LLM agents and language-model post-training (SFT, RLVR)',
+	'Molecular dynamics & enhanced-sampling free-energy methods',
+	'Structure and mechanism of membrane transporters & ion channels',
+];
 ---
 
 <BaseLayout>
-	<div class="stack gap-20 lg:gap-48">
-		<div class="wrapper stack gap-8 lg:gap-20">
-			<header class="hero">
-				<Hero
-					title="Hi, I'm Zhiyu (Joe) Zhao"
-					tagline="AI engineer and computational scientist. I build LLM agents and machine-learning systems for scientific discovery, with a Ph.D. in computational biophysics and research in Nature, Cell, and PNAS."
-					align="start"
-				>
-					<div class="roles">
-						<Pill><Icon icon="terminal-window" size="1.33em" /> LLM Agents</Pill>
-						<Pill><Icon icon="strategy" size="1.33em" /> ML for Science</Pill>
-						<Pill><Icon icon="trophy" size="1.33em" /> Computational Biophysics</Pill>
-					</div>
-				</Hero>
-
-				<img
-					alt="Portrait of Zhiyu Zhao"
-					width="1000"
-					height="1250"
-					src="/assets/portrait.jpg"
-				/>
-			</header>
-
-			<Skills />
+	<header class="intro">
+		<img class="avatar" src="/assets/portrait.jpg" alt="Zhiyu Zhao" width="200" height="250" />
+		<div class="identity">
+			<h1>Zhiyu (Joe) Zhao</h1>
+			<p class="role">Machine Learning Engineer, Apple</p>
+			<p class="sub">Ph.D., Computational Biophysics</p>
+			<p class="contact">
+				<a href="mailto:zhiyuzhao0423@gmail.com">Email</a>
+				<span>·</span>
+				<a href="https://scholar.google.com/citations?user=xEd8eLsAAAAJ&hl=en">Google Scholar</a>
+				<span>·</span>
+				<a href="https://github.com/zyzhao1993">GitHub</a>
+				<span>·</span>
+				<a href="https://www.linkedin.com/in/zhiyu-z-b051ba13a/">LinkedIn</a>
+			</p>
 		</div>
+	</header>
 
-		<main class="wrapper stack gap-20 lg:gap-48">
-			<section id="experience" class="section with-background">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Experience</h3>
-					<p>Where I've worked, from production AI engineering to a Ph.D. in biophysics.</p>
-				</header>
+	<section id="about" class="prose">
+		<p>
+			I'm a Machine Learning Engineer at <strong>Apple</strong>, where I build production LLM
+			agents and post-train language models. I came to machine-learning engineering from
+			computational science: previously I was a postdoctoral researcher in the Department of
+			Computer Science at <strong>Stanford University</strong>; I earned my <strong>Ph.D. in
+			Biophysics</strong> from the University of Illinois Urbana-Champaign; and I completed my
+			<strong>B.S. in Physics</strong> — with a minor in Computer Science — at Shanghai Jiao Tong
+			University.
+		</p>
+		<p>
+			My work bridges machine learning and the molecular sciences. I develop deep-learning methods
+			for molecular structure and interaction prediction — including diffusion models and geometric
+			deep learning for ligand docking — and I bring a decade of experience in physics-based
+			simulation: molecular dynamics, enhanced-sampling free-energy calculations, and cryo-EM–guided
+			modeling of proteins, membrane transporters, and ion channels. I'm increasingly focused on
+			agentic LLM systems and how these tools can accelerate scientific discovery.
+		</p>
+	</section>
 
-				<div class="gallery">
-					<ul class="exp-list">
-						<li class="exp-item">
-							<div class="exp-head">
-								<div>
-									<h4>AI / Agent Engineer</h4>
-									<p class="exp-org">Apple</p>
-								</div>
-								<span class="exp-date">Mar 2026 – Present</span>
-							</div>
-							<ul class="exp-points">
-								<li>
-									Built and shipped a production LLM agent for financial-data processing: it
-									decomposes the task, calls tools via function-calling, and writes and runs Python in
-									a sandbox with inline self-checks, turning days of manual work into about an hour of
-									runtime.
-								</li>
-								<li>
-									Post-trained a small language model with SFT and GRPO (RL from verifiable rewards),
-									curating ~2,000 examples and designing the reward signals; reliability improved by
-									about 15 points over a prompting baseline.
-								</li>
-								<li>
-									Built the offline evaluation harness that measured agent correctness — scoring
-									against ground truth, cross-version regression suites, and an error-mode taxonomy
-									that guided data and reward design.
-								</li>
-							</ul>
-						</li>
-						<li class="exp-item">
-							<div class="exp-head">
-								<div>
-									<h4>Computational Scientist</h4>
-									<p class="exp-org">Rayca Precision</p>
-								</div>
-								<span class="exp-date">Jan – Mar 2026</span>
-							</div>
-							<ul class="exp-points">
-								<li>
-									Built ML workflows for therapeutic and antibody / biologics discovery using structure,
-									binding, and property models, packaged as modular, reproducible tool chains ready for
-									LLM / agent orchestration.
-								</li>
-							</ul>
-						</li>
-						<li class="exp-item">
-							<div class="exp-head">
-								<div>
-									<h4>Postdoctoral Researcher</h4>
-									<p class="exp-org">Stanford University · Department of Computer Science</p>
-								</div>
-								<span class="exp-date">2022 – 2024</span>
-							</div>
-							<ul class="exp-points">
-								<li>
-									Built end-to-end structural-modeling workflows for structure-based drug discovery,
-									chaining AlphaFold structure and complex prediction, MD refinement, and
-									protein–protein interface analysis.
-								</li>
-								<li>
-									Engineered HPC pipelines (Slurm) to process terabyte-scale simulation data, with
-									large-scale dimensionality reduction, clustering, and statistical validation.
-								</li>
-							</ul>
-						</li>
-						<li class="exp-item">
-							<div class="exp-head">
-								<div>
-									<h4>Ph.D., Biophysics</h4>
-									<p class="exp-org">University of Illinois Urbana-Champaign</p>
-								</div>
-								<span class="exp-date">2015 – 2022</span>
-							</div>
-							<ul class="exp-points">
-								<li>
-									Studied the mechanisms and binding energetics of membrane transporters and ion
-									channels through large-scale simulation, and used sequence conservation and
-									coevolution analysis to pinpoint functional residues — work published in Nature,
-									Cell, and PNAS.
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</section>
+	<section class="block">
+		<h2>Research Interests</h2>
+		<ul class="interests">
+			{interests.map((item) => <li>{item}</li>)}
+		</ul>
+	</section>
 
-			<section id="projects" class="section with-background bg-variant">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Projects</h3>
-					<p>A couple of the ML systems I've built for molecular structure and drug discovery.</p>
-				</header>
-
-				<div class="gallery">
-					<ul class="project-list">
-						<li class="project-card">
-							<div class="project-head">
-								<h4>CryoDiffDock</h4>
-								<span class="project-date">2025</span>
-							</div>
-							<p class="project-tagline">Diffusion-based ligand docking in cryo-EM density.</p>
-							<p>
-								A diffusion docking method that conditions binding-site prediction and pose refinement
-								on experimental cryo-EM density, using SE(3)-equivariant density features and LoRA
-								fine-tuning of a pretrained docking model. I also curated <em>CryoLigand</em>, a
-								chemically validated cryo-EM protein–ligand benchmark of 3,700+ complexes. On 294 held-out
-								complexes it reaches 61.2% / 85.4% success at RMSD &lt;2 / &lt;5&nbsp;Å.
-							</p>
-							<div class="tech">
-								<Pill>PyTorch</Pill>
-								<Pill>Diffusion</Pill>
-								<Pill>Geometric Deep Learning</Pill>
-							</div>
-						</li>
-						<li class="project-card">
-							<div class="project-head">
-								<h4>GOLEM</h4>
-								<span class="project-date">2024</span>
-							</div>
-							<p class="project-tagline">Cryo-EM–guided ligand docking with explicit-water modeling.</p>
-							<p>
-								An open-source docking workflow that incorporates experimental cryo-EM density and
-								models ordered water molecules explicitly, combining physics-based scoring,
-								evolutionary search, and gradient refinement. It improves docking accuracy by 35
-								percentage points over density-free docking.
-							</p>
-							<div class="tech">
-								<Pill>Python</Pill>
-								<Pill>Molecular Docking</Pill>
-								<Pill>Cryo-EM</Pill>
-							</div>
-							<a class="project-link" href="/work/golem-cryoem-docking">
-								Read the paper <Icon icon="arrow-right" size="1.1em" />
-							</a>
-						</li>
-					</ul>
-				</div>
-			</section>
-
-			<section id="publications" class="section with-background">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Selected Publications</h3>
-					<p>
-						A few highlights from 13 peer-reviewed papers across structural biology, biophysics,
-						and computational chemistry.
-					</p>
-				</header>
-
-				<div class="gallery">
-					<Grid>
-						{
-							projects.map((project) => (
-								<li>
-									<PortfolioPreview project={project} />
-								</li>
-							))
-						}
-					</Grid>
-					<div class="pubs-cta">
-						<CallToAction href="https://scholar.google.com/citations?user=xEd8eLsAAAAJ&hl=en">
-							See all 13 publications on Google Scholar
-							<Icon icon="arrow-right" size="1.2em" />
-						</CallToAction>
-					</div>
-				</div>
-			</section>
-		</main>
-
-		<ContactCTA />
-	</div>
+	<section id="publications" class="block">
+		<h2>Selected Publications</h2>
+		<ol class="pubs">
+			{
+				publications.map((p) => (
+					<li>
+						<span class="authors" set:html={p.authors.replace('Z. Zhao', '<b>Z. Zhao</b>')} />{' '}
+						{p.title} <i>{p.venue}</i>, {p.year}. <a href={p.doi}>[link]</a>
+					</li>
+				))
+			}
+		</ol>
+		<p class="more">
+			See my <a href="https://scholar.google.com/citations?user=xEd8eLsAAAAJ&hl=en">Google Scholar</a>
+			profile for the full list of publications.
+		</p>
+	</section>
 </BaseLayout>
 
 <style>
-	.hero {
+	.intro {
 		display: flex;
-		flex-direction: column;
+		gap: 2rem;
 		align-items: center;
-		gap: 2rem;
+		margin-bottom: 2.5rem;
 	}
 
-	.roles {
-		display: none;
-	}
-
-	.hero img {
-		aspect-ratio: 5 / 4;
+	.avatar {
+		width: 160px;
+		height: 200px;
 		object-fit: cover;
-		object-position: top;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
-	}
-
-	@media (min-width: 50em) {
-		.hero {
-			display: grid;
-			grid-template-columns: 6fr 4fr;
-			padding-inline: 2.5rem;
-			gap: 3.75rem;
-		}
-
-		.roles {
-			margin-top: 0.5rem;
-			display: flex;
-			gap: 0.5rem;
-		}
-
-		.hero img {
-			aspect-ratio: 3 / 4;
-			border-radius: 4.5rem;
-			object-fit: cover;
-		}
-	}
-
-	/* ====================================================== */
-
-	.section {
-		display: grid;
-		gap: 2rem;
-		scroll-margin-top: 5rem;
-	}
-
-	.with-background {
-		position: relative;
-	}
-
-	.with-background::before {
-		--hero-bg: var(--bg-image-subtle-2);
-
-		content: '';
-		position: absolute;
-		pointer-events: none;
-		left: 50%;
-		width: 100vw;
-		aspect-ratio: calc(2.25 / var(--bg-scale));
-		top: 0;
-		transform: translateY(-75%) translateX(-50%);
-		background:
-			url('/assets/backgrounds/noise.png') top center/220px repeat,
-			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
-			var(--gray-999);
-		background-blend-mode: overlay, normal, normal, normal;
-		mix-blend-mode: var(--bg-blend-mode);
-		z-index: -1;
-	}
-
-	.with-background.bg-variant::before {
-		--hero-bg: var(--bg-image-subtle-1);
-	}
-
-	.section-header {
-		justify-self: center;
-		text-align: center;
-		max-width: 50ch;
-		font-size: var(--text-md);
-		color: var(--gray-300);
-	}
-
-	.section-header h3 {
-		font-size: var(--text-2xl);
-	}
-
-	@media (min-width: 50em) {
-		.section {
-			grid-template-columns: repeat(4, 1fr);
-			grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
-			gap: 5rem;
-		}
-
-		.section.with-cta {
-			grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
-		}
-
-		.section-header {
-			grid-area: header;
-			font-size: var(--text-lg);
-		}
-
-		.section-header h3 {
-			font-size: var(--text-4xl);
-		}
-
-		.with-cta .section-header {
-			justify-self: flex-start;
-			text-align: left;
-		}
-
-		.gallery {
-			grid-area: gallery;
-		}
-
-		.cta {
-			grid-area: cta;
-		}
-	}
-
-	/* ====================================================== */
-	/* Projects */
-
-	.project-list,
-	.exp-list {
-		display: grid;
-		gap: 1.5rem;
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
-
-	.project-card,
-	.exp-item {
-		border: 1px solid var(--gray-800);
-		border-radius: 1.5rem;
-		padding: 1.5rem;
-		background-color: var(--gray-999_40);
-		box-shadow: var(--shadow-sm);
-	}
-
-	.project-head,
-	.exp-head {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-	}
-
-	.project-head h4,
-	.exp-head h4 {
-		font-size: var(--text-lg);
-		color: var(--gray-0);
-	}
-
-	.project-date,
-	.exp-date {
+		border-radius: 8px;
 		flex: none;
-		font-size: var(--text-sm);
-		color: var(--gray-400);
 	}
 
-	.project-tagline {
-		margin-top: 0.25rem;
-		color: var(--gray-100);
+	.identity h1 {
+		font-size: 2.1rem;
+		font-weight: 600;
+		color: #14171d;
+		letter-spacing: -0.01em;
+	}
+
+	.role {
+		margin-top: 0.5rem;
+		font-size: 1.1rem;
 		font-weight: 500;
+		color: #262a31;
 	}
 
-	.project-card p,
-	.exp-points {
-		color: var(--gray-300);
+	.sub {
+		color: #5a606b;
+		font-size: 1rem;
 	}
 
-	.project-card > p:not(.project-tagline) {
+	.contact {
 		margin-top: 0.75rem;
-	}
-
-	.tech {
+		font-size: 0.95rem;
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.5rem;
-		margin-top: 1rem;
-	}
-
-	.project-link {
-		display: inline-flex;
+		gap: 0.4rem 0.6rem;
 		align-items: center;
-		gap: 0.4rem;
-		margin-top: 1rem;
-		color: var(--accent-text-over);
-		text-decoration: none;
-		font-weight: 500;
 	}
 
-	.project-link:hover,
-	.project-link:focus {
-		text-decoration: underline;
-		text-underline-offset: 0.25em;
+	.contact span {
+		color: #c3c7cf;
 	}
 
-	.pubs-cta {
-		display: flex;
-		justify-content: center;
-		margin-top: 2rem;
+	.prose p {
+		margin-bottom: 1.1rem;
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: #2b2f37;
 	}
 
-	/* Allow the long button label to wrap instead of overflowing on narrow screens. */
-	.pubs-cta :global(a) {
-		max-width: 100%;
-		white-space: normal;
-		text-align: center;
-	}
-
-	/* Experience — company is the headline, role a label above it */
-
-	.exp-head {
-		align-items: flex-start;
-	}
-
-	.exp-head h4 {
-		font-size: var(--text-md);
+	.prose strong {
 		font-weight: 600;
-		color: var(--gray-200);
+		color: #14171d;
 	}
 
-	.exp-org {
-		font-family: var(--font-brand);
-		font-size: var(--text-xl);
+	.block {
+		margin-top: 2.5rem;
+	}
+
+	.block h2 {
+		font-size: 1.35rem;
 		font-weight: 600;
-		color: var(--gray-0);
-		margin-top: 0.15rem;
+		color: #14171d;
+		padding-bottom: 0.5rem;
+		margin-bottom: 1rem;
+		border-bottom: 1px solid #e7e8ec;
 	}
 
-	.exp-points {
-		margin: 0.9rem 0 0;
-		padding-left: 1.1rem;
+	.interests {
+		padding-left: 1.2rem;
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
+		gap: 0.4rem;
 	}
 
-	@media (min-width: 50em) {
-		.project-list {
-			grid-template-columns: 1fr 1fr;
-		}
+	.interests li {
+		font-size: 1.03rem;
+		line-height: 1.5;
+		color: #2b2f37;
+	}
 
-		.project-card,
-		.exp-item {
-			padding: 2rem;
-		}
+	.pubs {
+		padding-left: 1.4rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
 
-		/* Title on the left, date on the right on wider screens. */
-		.project-head,
-		.exp-head {
-			flex-direction: row;
-			justify-content: space-between;
-			gap: 1rem;
-		}
+	.pubs li {
+		font-size: 1rem;
+		line-height: 1.6;
+		color: #2b2f37;
+	}
 
-		.project-head {
-			align-items: baseline;
+	.pubs .authors b {
+		color: #14171d;
+	}
+
+	.more {
+		margin-top: 1.5rem;
+		font-size: 0.98rem;
+		color: #5a606b;
+	}
+
+	@media (max-width: 34em) {
+		.intro {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1.25rem;
 		}
 	}
 </style>
