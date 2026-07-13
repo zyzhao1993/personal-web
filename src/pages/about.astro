@@ -1,0 +1,138 @@
+---
+import ContactCTA from '../components/ContactCTA.astro';
+import Hero from '../components/Hero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+	title="About | Zhiyu (Joe) Zhao"
+	description="About Zhiyu (Joe) Zhao — AI engineer and computational scientist"
+>
+	<div class="stack gap-20">
+		<main class="wrapper about">
+			<Hero
+				title="About"
+				tagline="Thanks for stopping by. Here's a bit more about my background and what I work on."
+			>
+				<img
+					width="1000"
+					height="1167"
+					src="/assets/life.jpg"
+					alt="Zhiyu Zhao at a waterfront at sunset"
+				/>
+			</Hero>
+
+			<section>
+				<h2 class="section-title">Background</h2>
+				<div class="content">
+					<p>
+						I'm an AI engineer and computational scientist. Today I build LLM agents and
+						machine-learning systems — production tool-use agents, LLM post-training (SFT and
+						GRPO/RLVR), and deep-learning models for molecular structure and interaction prediction.
+					</p>
+					<p>
+						That work sits on a decade of scientific computing. I earned a Ph.D. in biophysics
+						resolving the mechanisms of membrane transporters and ion channels through large-scale
+						molecular dynamics and enhanced-sampling free-energy calculations, and I develop ML
+						methods for structure-based drug discovery — including <em>CryoDiffDock</em>, a
+						diffusion docking model conditioned on cryo-EM density, and <em>GOLEM</em>, an
+						open-source cryo-EM–guided docking tool.
+					</p>
+					<p>
+						What connects both sides of my work is turning open-ended problems into reliable,
+						well-tested tools — whether that's an agent that automates a day of manual work or a
+						carefully validated benchmark. My research has appeared in <em>Nature</em>,
+						<em>Cell</em>, and <em>PNAS</em>; the full list is on my
+						<a href="https://scholar.google.com/citations?user=xEd8eLsAAAAJ&hl=en">Google Scholar</a>
+						profile.
+					</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Education</h2>
+				<div class="content">
+					<p><strong>Postdoctoral Researcher</strong> — Stanford University, Department of Computer Science · 2022–2024</p>
+					<p><strong>Ph.D. in Biophysics</strong> — University of Illinois Urbana-Champaign · 2015–2022</p>
+					<p><strong>B.S. in Physics</strong> (minor in Computer Science) — Shanghai Jiao Tong University · 2011–2015</p>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Technical Skills</h2>
+				<div class="content">
+					<p>
+						<strong>ML &amp; Agents:</strong> PyTorch · Hugging Face Transformers / TRL · LLM
+						post-training (SFT, GRPO/RLVR) · agentic tool-use systems · evaluation &amp; benchmarking
+						· diffusion models · geometric deep learning (GNNs) · LoRA
+					</p>
+					<p>
+						<strong>Bio &amp; Modeling:</strong> AlphaFold · ESM · DiffDock · RDKit · AutoDock Vina ·
+						Schrödinger · molecular dynamics (NAMD, AMBER, GROMACS, OpenMM) · sequence &amp;
+						evolutionary analysis
+					</p>
+					<p><strong>Languages:</strong> Python · C++ · SQL · Bash / Linux</p>
+					<p><strong>Infrastructure:</strong> AWS · Azure · Docker · Git / GitHub Actions · HPC / Slurm</p>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.about {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
+
+	img {
+		margin-top: 1.5rem;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		color: var(--gray-200);
+	}
+
+	.section-title {
+		grid-column-start: 1;
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+	}
+
+	.content {
+		grid-column: 2 / 4;
+	}
+
+	.content :global(a) {
+		text-decoration: 1px solid underline transparent;
+		text-underline-offset: 0.25em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	.content :global(a:hover),
+	.content :global(a:focus) {
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.about {
+			display: grid;
+			grid-template-columns: 1fr 60% 1fr;
+		}
+
+		.about > :global(:first-child) {
+			grid-column-start: 2;
+		}
+
+		section {
+			display: contents;
+			font-size: var(--text-lg);
+		}
+	}
+</style>

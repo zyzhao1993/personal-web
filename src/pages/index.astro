@@ -1,0 +1,475 @@
+---
+import { getCollection } from 'astro:content';
+// Page section components
+import ContactCTA from '../components/ContactCTA.astro';
+import Grid from '../components/Grid.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import Pill from '../components/Pill.astro';
+import PortfolioPreview from '../components/PortfolioPreview.astro';
+import Skills from '../components/Skills.astro';
+// Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Content Fetching: List all publications, most recent first
+const projects = (await getCollection('work')).sort(
+	(a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+
+// Full Astro Component Syntax:
+// https://docs.astro.build/basics/astro-components/
+---
+
+<BaseLayout>
+	<div class="stack gap-20 lg:gap-48">
+		<div class="wrapper stack gap-8 lg:gap-20">
+			<header class="hero">
+				<Hero
+					title="Hi, I'm Zhiyu (Joe) Zhao"
+					tagline="AI engineer and computational scientist. I build LLM agents and machine-learning systems for scientific discovery, with a Ph.D. in computational biophysics and research in Nature, Cell, and PNAS."
+					align="start"
+				>
+					<div class="roles">
+						<Pill><Icon icon="terminal-window" size="1.33em" /> LLM Agents</Pill>
+						<Pill><Icon icon="strategy" size="1.33em" /> ML for Science</Pill>
+						<Pill><Icon icon="trophy" size="1.33em" /> Computational Biophysics</Pill>
+					</div>
+				</Hero>
+
+				<img
+					alt="Portrait of Zhiyu Zhao"
+					width="1000"
+					height="1250"
+					src="/assets/portrait.jpg"
+				/>
+			</header>
+
+			<Skills />
+		</div>
+
+		<main class="wrapper stack gap-20 lg:gap-48">
+			<section id="experience" class="section with-background">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>Experience</h3>
+					<p>Where I've worked, from production AI engineering to a Ph.D. in biophysics.</p>
+				</header>
+
+				<div class="gallery">
+					<ul class="exp-list">
+						<li class="exp-item">
+							<div class="exp-head">
+								<div>
+									<h4>AI / Agent Engineer</h4>
+									<p class="exp-org">Apple</p>
+								</div>
+								<span class="exp-date">Mar 2026 – Present</span>
+							</div>
+							<ul class="exp-points">
+								<li>
+									Built and shipped a production LLM agent for financial-data processing: it
+									decomposes the task, calls tools via function-calling, and writes and runs Python in
+									a sandbox with inline self-checks, turning days of manual work into about an hour of
+									runtime.
+								</li>
+								<li>
+									Post-trained a small language model with SFT and GRPO (RL from verifiable rewards),
+									curating ~2,000 examples and designing the reward signals; reliability improved by
+									about 15 points over a prompting baseline.
+								</li>
+								<li>
+									Built the offline evaluation harness that measured agent correctness — scoring
+									against ground truth, cross-version regression suites, and an error-mode taxonomy
+									that guided data and reward design.
+								</li>
+							</ul>
+						</li>
+						<li class="exp-item">
+							<div class="exp-head">
+								<div>
+									<h4>Computational Scientist</h4>
+									<p class="exp-org">Rayca Precision</p>
+								</div>
+								<span class="exp-date">Jan – Mar 2026</span>
+							</div>
+							<ul class="exp-points">
+								<li>
+									Built ML workflows for therapeutic and antibody / biologics discovery using structure,
+									binding, and property models, packaged as modular, reproducible tool chains ready for
+									LLM / agent orchestration.
+								</li>
+							</ul>
+						</li>
+						<li class="exp-item">
+							<div class="exp-head">
+								<div>
+									<h4>Postdoctoral Researcher</h4>
+									<p class="exp-org">Stanford University · Department of Computer Science</p>
+								</div>
+								<span class="exp-date">2022 – 2024</span>
+							</div>
+							<ul class="exp-points">
+								<li>
+									Built end-to-end structural-modeling workflows for structure-based drug discovery,
+									chaining AlphaFold structure and complex prediction, MD refinement, and
+									protein–protein interface analysis.
+								</li>
+								<li>
+									Engineered HPC pipelines (Slurm) to process terabyte-scale simulation data, with
+									large-scale dimensionality reduction, clustering, and statistical validation.
+								</li>
+							</ul>
+						</li>
+						<li class="exp-item">
+							<div class="exp-head">
+								<div>
+									<h4>Ph.D., Biophysics</h4>
+									<p class="exp-org">University of Illinois Urbana-Champaign</p>
+								</div>
+								<span class="exp-date">2015 – 2022</span>
+							</div>
+							<ul class="exp-points">
+								<li>
+									Studied the mechanisms and binding energetics of membrane transporters and ion
+									channels through large-scale simulation, and used sequence conservation and
+									coevolution analysis to pinpoint functional residues — work published in Nature,
+									Cell, and PNAS.
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section id="projects" class="section with-background bg-variant">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>Projects</h3>
+					<p>A couple of the ML systems I've built for molecular structure and drug discovery.</p>
+				</header>
+
+				<div class="gallery">
+					<ul class="project-list">
+						<li class="project-card">
+							<div class="project-head">
+								<h4>CryoDiffDock</h4>
+								<span class="project-date">2025</span>
+							</div>
+							<p class="project-tagline">Diffusion-based ligand docking in cryo-EM density.</p>
+							<p>
+								A diffusion docking method that conditions binding-site prediction and pose refinement
+								on experimental cryo-EM density, using SE(3)-equivariant density features and LoRA
+								fine-tuning of a pretrained docking model. I also curated <em>CryoLigand</em>, a
+								chemically validated cryo-EM protein–ligand benchmark of 3,700+ complexes. On 294 held-out
+								complexes it reaches 61.2% / 85.4% success at RMSD &lt;2 / &lt;5&nbsp;Å.
+							</p>
+							<div class="tech">
+								<Pill>PyTorch</Pill>
+								<Pill>Diffusion</Pill>
+								<Pill>Geometric Deep Learning</Pill>
+							</div>
+						</li>
+						<li class="project-card">
+							<div class="project-head">
+								<h4>GOLEM</h4>
+								<span class="project-date">2024</span>
+							</div>
+							<p class="project-tagline">Cryo-EM–guided ligand docking with explicit-water modeling.</p>
+							<p>
+								An open-source docking workflow that incorporates experimental cryo-EM density and
+								models ordered water molecules explicitly, combining physics-based scoring,
+								evolutionary search, and gradient refinement. It improves docking accuracy by 35
+								percentage points over density-free docking.
+							</p>
+							<div class="tech">
+								<Pill>Python</Pill>
+								<Pill>Molecular Docking</Pill>
+								<Pill>Cryo-EM</Pill>
+							</div>
+							<a class="project-link" href="/work/golem-cryoem-docking">
+								Read the paper <Icon icon="arrow-right" size="1.1em" />
+							</a>
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<section id="publications" class="section with-background">
+				<header class="section-header stack gap-2 lg:gap-4">
+					<h3>Selected Publications</h3>
+					<p>
+						A few highlights from 13 peer-reviewed papers across structural biology, biophysics,
+						and computational chemistry.
+					</p>
+				</header>
+
+				<div class="gallery">
+					<Grid>
+						{
+							projects.map((project) => (
+								<li>
+									<PortfolioPreview project={project} />
+								</li>
+							))
+						}
+					</Grid>
+					<p class="pubs-cta">
+						<a
+							class="project-link"
+							href="https://scholar.google.com/citations?user=xEd8eLsAAAAJ&hl=en"
+						>
+							See all 13 publications on Google Scholar <Icon icon="arrow-right" size="1.1em" />
+						</a>
+					</p>
+				</div>
+			</section>
+		</main>
+
+		<ContactCTA />
+	</div>
+</BaseLayout>
+
+<style>
+	.hero {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2rem;
+	}
+
+	.roles {
+		display: none;
+	}
+
+	.hero img {
+		aspect-ratio: 5 / 4;
+		object-fit: cover;
+		object-position: top;
+		border-radius: 1.5rem;
+		box-shadow: var(--shadow-md);
+	}
+
+	@media (min-width: 50em) {
+		.hero {
+			display: grid;
+			grid-template-columns: 6fr 4fr;
+			padding-inline: 2.5rem;
+			gap: 3.75rem;
+		}
+
+		.roles {
+			margin-top: 0.5rem;
+			display: flex;
+			gap: 0.5rem;
+		}
+
+		.hero img {
+			aspect-ratio: 3 / 4;
+			border-radius: 4.5rem;
+			object-fit: cover;
+		}
+	}
+
+	/* ====================================================== */
+
+	.section {
+		display: grid;
+		gap: 2rem;
+		scroll-margin-top: 5rem;
+	}
+
+	.with-background {
+		position: relative;
+	}
+
+	.with-background::before {
+		--hero-bg: var(--bg-image-subtle-2);
+
+		content: '';
+		position: absolute;
+		pointer-events: none;
+		left: 50%;
+		width: 100vw;
+		aspect-ratio: calc(2.25 / var(--bg-scale));
+		top: 0;
+		transform: translateY(-75%) translateX(-50%);
+		background:
+			url('/assets/backgrounds/noise.png') top center/220px repeat,
+			var(--hero-bg) center center / var(--bg-gradient-size) no-repeat,
+			var(--gray-999);
+		background-blend-mode: overlay, normal, normal, normal;
+		mix-blend-mode: var(--bg-blend-mode);
+		z-index: -1;
+	}
+
+	.with-background.bg-variant::before {
+		--hero-bg: var(--bg-image-subtle-1);
+	}
+
+	.section-header {
+		justify-self: center;
+		text-align: center;
+		max-width: 50ch;
+		font-size: var(--text-md);
+		color: var(--gray-300);
+	}
+
+	.section-header h3 {
+		font-size: var(--text-2xl);
+	}
+
+	@media (min-width: 50em) {
+		.section {
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-areas: 'header header header header' 'gallery gallery gallery gallery';
+			gap: 5rem;
+		}
+
+		.section.with-cta {
+			grid-template-areas: 'header header header cta' 'gallery gallery gallery gallery';
+		}
+
+		.section-header {
+			grid-area: header;
+			font-size: var(--text-lg);
+		}
+
+		.section-header h3 {
+			font-size: var(--text-4xl);
+		}
+
+		.with-cta .section-header {
+			justify-self: flex-start;
+			text-align: left;
+		}
+
+		.gallery {
+			grid-area: gallery;
+		}
+
+		.cta {
+			grid-area: cta;
+		}
+	}
+
+	/* ====================================================== */
+	/* Projects */
+
+	.project-list,
+	.exp-list {
+		display: grid;
+		gap: 1.5rem;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.project-card,
+	.exp-item {
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		padding: 1.5rem;
+		background-color: var(--gray-999_40);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.project-head,
+	.exp-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: 1rem;
+	}
+
+	.project-head h4,
+	.exp-head h4 {
+		font-size: var(--text-lg);
+		color: var(--gray-0);
+	}
+
+	.project-date,
+	.exp-date {
+		flex: none;
+		font-size: var(--text-sm);
+		color: var(--gray-400);
+	}
+
+	.project-tagline {
+		margin-top: 0.25rem;
+		color: var(--gray-100);
+		font-weight: 500;
+	}
+
+	.project-card p,
+	.exp-points {
+		color: var(--gray-300);
+	}
+
+	.project-card > p:not(.project-tagline) {
+		margin-top: 0.75rem;
+	}
+
+	.tech {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-top: 1rem;
+	}
+
+	.project-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		margin-top: 1rem;
+		color: var(--accent-text-over);
+		text-decoration: none;
+		font-weight: 500;
+	}
+
+	.project-link:hover,
+	.project-link:focus {
+		text-decoration: underline;
+		text-underline-offset: 0.25em;
+	}
+
+	.pubs-cta {
+		margin-top: 1.5rem;
+	}
+
+	/* Experience — company is the headline, role a label above it */
+
+	.exp-head {
+		align-items: flex-start;
+	}
+
+	.exp-head h4 {
+		font-size: var(--text-md);
+		font-weight: 600;
+		color: var(--gray-200);
+	}
+
+	.exp-org {
+		font-family: var(--font-brand);
+		font-size: var(--text-xl);
+		font-weight: 600;
+		color: var(--gray-0);
+		margin-top: 0.15rem;
+	}
+
+	.exp-points {
+		margin: 0.9rem 0 0;
+		padding-left: 1.1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	@media (min-width: 50em) {
+		.project-list {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.project-card,
+		.exp-item {
+			padding: 2rem;
+		}
+	}
+</style>
