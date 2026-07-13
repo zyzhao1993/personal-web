@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+// Component Imports
+import CallToAction from '../components/CallToAction.astro';
 // Page section components
 import ContactCTA from '../components/ContactCTA.astro';
 import Grid from '../components/Grid.astro';
@@ -211,14 +213,12 @@ const projects = (await getCollection('work')).sort(
 							))
 						}
 					</Grid>
-					<p class="pubs-cta">
-						<a
-							class="project-link"
-							href="https://scholar.google.com/citations?user=xEd8eLsAAAAJ&hl=en"
-						>
-							See all 13 publications on Google Scholar <Icon icon="arrow-right" size="1.1em" />
-						</a>
-					</p>
+					<div class="pubs-cta">
+						<CallToAction href="https://scholar.google.com/citations?user=xEd8eLsAAAAJ&hl=en">
+							See all 13 publications on Google Scholar
+							<Icon icon="arrow-right" size="1.2em" />
+						</CallToAction>
+					</div>
 				</div>
 			</section>
 		</main>
@@ -431,7 +431,9 @@ const projects = (await getCollection('work')).sort(
 	}
 
 	.pubs-cta {
-		margin-top: 1.5rem;
+		display: flex;
+		justify-content: center;
+		margin-top: 2rem;
 	}
 
 	/* Experience — company is the headline, role a label above it */
