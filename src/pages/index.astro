@@ -65,6 +65,33 @@ const interests = [
 	'Molecular dynamics & enhanced-sampling free-energy methods',
 	'Structure and mechanism of membrane transporters & ion channels',
 ];
+
+const experience = [
+	{
+		role: 'Machine Learning Engineer',
+		org: 'Apple',
+		date: '2026 – Present',
+		note: 'LLM agents and tool-use systems; language-model post-training (SFT, GRPO/RLVR) and evaluation.',
+	},
+	{
+		role: 'Computational Scientist',
+		org: 'Rayca Precision',
+		date: '2026',
+		note: 'ML workflows for therapeutic and antibody/biologics discovery.',
+	},
+	{
+		role: 'Postdoctoral Researcher',
+		org: 'Stanford University, Department of Computer Science',
+		date: '2022 – 2024',
+		note: 'ML and physics-based pipelines for structure-based drug discovery (AlphaFold, molecular dynamics, HPC).',
+	},
+	{
+		role: 'Graduate Researcher (Ph.D.)',
+		org: 'University of Illinois Urbana-Champaign',
+		date: '2015 – 2022',
+		note: 'Simulation of membrane transporters and ion channels; research published in Nature, Cell, and PNAS.',
+	},
+];
 ---
 
 <BaseLayout>
@@ -110,6 +137,25 @@ const interests = [
 		<h2>Research Interests</h2>
 		<ul class="interests">
 			{interests.map((item) => <li>{item}</li>)}
+		</ul>
+	</section>
+
+	<section id="experience" class="block">
+		<h2>Experience</h2>
+		<ul class="cv-list">
+			{
+				experience.map((e) => (
+					<li>
+						<div class="cv-head">
+							<span class="cv-title">
+								{e.role} · <span class="cv-org">{e.org}</span>
+							</span>
+							<span class="cv-date">{e.date}</span>
+						</div>
+						<p class="cv-note">{e.note}</p>
+					</li>
+				))
+			}
 		</ul>
 	</section>
 
@@ -196,6 +242,10 @@ const interests = [
 		margin-top: 2.5rem;
 	}
 
+	section[id] {
+		scroll-margin-top: 4.5rem;
+	}
+
 	.block h2 {
 		font-size: 1.35rem;
 		font-weight: 600;
@@ -238,6 +288,46 @@ const interests = [
 	.more {
 		margin-top: 1.5rem;
 		font-size: 0.98rem;
+		color: #5a606b;
+	}
+
+	.cv-list {
+		list-style: none;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1.15rem;
+	}
+
+	.cv-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: 0.5rem 1rem;
+		flex-wrap: wrap;
+	}
+
+	.cv-title {
+		font-size: 1.05rem;
+		font-weight: 600;
+		color: #14171d;
+	}
+
+	.cv-org {
+		font-weight: 400;
+		color: #3a3f49;
+	}
+
+	.cv-date {
+		font-size: 0.92rem;
+		color: #7a808c;
+		white-space: nowrap;
+	}
+
+	.cv-note {
+		margin-top: 0.2rem;
+		font-size: 0.98rem;
+		line-height: 1.5;
 		color: #5a606b;
 	}
 
